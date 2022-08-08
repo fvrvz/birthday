@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 html {
   font-size: calc(100vmax / 1500 * 100);
 }
@@ -12,12 +12,12 @@ body {
   overflow: hidden;
 }
 .title {
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
   font-size: clamp(36px, 0.6rem, 100px);
-  color: #17706E;
-  text-shadow: 6px 4px #B6EB7A;
+  color: #17706e;
+  text-shadow: 6px 4px #b6eb7a;
 }
-[class^='firework-'] {
+[class^="firework-"] {
   position: absolute;
   width: 0.1rem;
   height: 0.1rem;
@@ -35,7 +35,6 @@ $frame-list: firework-sm, firework-md, firework-lg;
   }
 }
 
-
 // dots generator
 @function dots($r) {
   $result: ();
@@ -43,8 +42,15 @@ $frame-list: firework-sm, firework-md, firework-lg;
   @for $i from 1 through 4 {
     $x: 0;
     $y: 0;
-    @if $i <= 2 {$x: $r} @else {$y: $r}
-    @if $i % 2 != 0 {$x: -$x; $y: -$y}
+    @if $i <= 2 {
+      $x: $r;
+    } @else {
+      $y: $r;
+    }
+    @if $i % 2 != 0 {
+      $x: -$x;
+      $y: -$y;
+    }
     $result: append($result, #{$x}rem #{$y}rem 0 #e2aa01, comma);
   }
   // diagonal
@@ -52,8 +58,12 @@ $frame-list: firework-sm, firework-md, firework-lg;
     $dist2: $r * 0.7;
     $x: $dist2;
     $y: $dist2;
-    @if $i > 2 {$x: -$x}
-    @if $i % 2 != 0 {$y: -$y}
+    @if $i > 2 {
+      $x: -$x;
+    }
+    @if $i % 2 != 0 {
+      $y: -$y;
+    }
     $result: append($result, #{$x}rem #{$y}rem 0 #e2aa01, comma);
   }
   @return $result;
@@ -79,10 +89,8 @@ $frame-list: firework-sm, firework-md, firework-lg;
 @include fireworkSize(md, 0.7);
 @include fireworkSize(lg, 0.9);
 
-
-
 main {
-    position: absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -91,51 +99,76 @@ main {
   z-index: 9999;
 }
 
-
-
-
 .gift-animation-container {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 20%);
-
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 20%);
 }
 .small-text {
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    font-size: 12px;
-    font-family: sans-serif;
-    opacity: 0.5;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  font-size: 12px;
+  font-family: sans-serif;
+  opacity: 0.5;
 }
 
 #player {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999;
+  background-color: #fdfeff;
+
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  font-family: sans-serif;
+}
+
+.timer-wrapper {
+  text-align: center;
+
+  h1 {
+    color: #17706e;
+  }
+  h2 {
+    color: #e2aa01;
+  }
+}
+.modal-phone {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .modal-phone {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 9999999;
+    z-index: 99999999;
     background-color: #fdfeff;
 
-    display: grid;
-    place-items: center;
-    font-size: 28px;
-    font-family: sans-serif;
-}
-
-.timer-wrapper {
-    text-align: center;
-
-    h1 {
-        color: #17706E;
+    .wrapper {
+      text-align: center;
     }
-    h2 {
-        color: #e2aa01;
+
+    .text {
+      color: red;
+      font-size: 20px;
+      font-family: sans-serif;
     }
+  }
 }
